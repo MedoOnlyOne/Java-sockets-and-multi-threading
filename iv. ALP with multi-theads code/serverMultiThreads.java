@@ -19,38 +19,42 @@ class ServerThreads implements Runnable{
 
             while (true)
                 {
-                    // Get the reading from the computer
+                    boolean exit = false;
+                    // Get the message from the computer
                     String data = computerSocketInput.readUTF();
-                    System.out.println(data + " has been received from the computer.");
-                    // if the reading is exit, close the connection.
-                    if (data.equals("exit"))
+                    // Check if the reading is exit.
+                    if(data.contains("exit")){
+                        exit = true;
+                    }
+                    
+                    // if the message has an exit word, close the driver's connection.
+                    if (exit)
                     {
-                        System.out.println("Computer is disconnected.");
-                        System.out.println("Server is down.");
-                        break;
+                        continue;
                     } else {
+                        System.out.println(data + " has been received from the computer.");
                         /*
+                            Request sensor's reading.
                             Process the reading.
                             Make the recommendations.
-                         */
-                        
+                        */
+                        System.out.println("Request readings from sensors......");
+                        System.out.println("Analysis the readings to make the recommendation.......");
                         // Send the recommendations to the computer.
-                        computerSocketOutput.writeUTF("Recommendations...");
+                        computerSocketOutput.writeUTF("Recommendation...");
                         computerSocketOutput.flush();
-                        System.out.println("Recommendations has been sent to the computer.");
+                        System.out.println("Recommendation has been sent to the computer.");
                     }
                 }
-                computerSocketInput.close();
-                computerSocketOutput.close();
-                computerSocket.close();
         }
         catch (IOException e){
-            System.err.println(e.getMessage());
+            System.out.println("thread error");
+            System.err.println(e);
         }
     }
 }
 
-public class serversMultiThreads {
+public class serverMultiThreads {
     public static void main(String[] args){
         try
         {
@@ -70,9 +74,9 @@ public class serversMultiThreads {
                 System.out.println("Computer is connected  by "+ thread.getName() + "......");
             }
         } 
-        catch (IOException ex)
+        catch (IOException e)
         {
-            System.err.println(ex.getMessage());
+            System.err.println(e);
         }
     }
 }
