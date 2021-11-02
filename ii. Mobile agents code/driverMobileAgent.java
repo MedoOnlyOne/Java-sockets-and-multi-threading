@@ -49,9 +49,9 @@ public class driverMobileAgent {
             computerSocketOutput.close();
             computerSocket.close();
         } 
-        catch (IOException ex)
+        catch (IOException e)
         {
-            System.err.println(ex.getMessage());
+            System.err.println(e);
         }
         sc.close();
     }

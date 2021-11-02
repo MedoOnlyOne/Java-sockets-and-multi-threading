@@ -1,7 +1,7 @@
 import java.io.*;
 import java.net.*;
 
-public class computersMobileAgent {
+public class computerMobileAgent {
     public static void main(String[] args){
         try
         {
@@ -55,8 +55,6 @@ public class computersMobileAgent {
                         driverSocketOutput.flush();
                         System.out.println("Recommendations has been sent to the drivers.");
                     }
-                    
-                    
                 }
                 // Close the connection with the sensor.
                 driverSocketInput.close();
@@ -64,9 +62,9 @@ public class computersMobileAgent {
                 driverSocket.close();
             }
         } 
-        catch (IOException ex)
+        catch (IOException e)
         {
-            System.out.println(ex.getMessage());
+            System.err.println(e);
         }
     }    
 }

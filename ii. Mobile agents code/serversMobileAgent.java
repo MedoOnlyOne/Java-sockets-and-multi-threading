@@ -30,7 +30,7 @@ public class serversMobileAgent {
                     // if the message has an exit word, close the driver's connection.
                     if (exit)
                     {
-                        break;
+                        continue;
                     } else {
                         System.out.println(data + " has been received from the computer.");
                         /*
@@ -46,15 +46,11 @@ public class serversMobileAgent {
                         System.out.println("Recommendation has been sent to the computer.");
                     }
                 }
-                // Close the connection with the computer.
-                computerSocketInput.close();
-                computerSocketOutput.close();
-                computerSocket.close();
             }
         } 
-        catch (IOException ex)
+        catch (IOException e)
         {
-            System.out.println(ex.getMessage());
+            System.err.println(e);
         }
     }
 }
